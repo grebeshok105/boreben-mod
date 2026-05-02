@@ -1,3 +1,7 @@
 {
-	"item.vanguard.reinhard_suit": "Рыцарский орден Райнхарда"
+	"item.vanguard.reinhard_suit": "Рыцарский орден Райнхарда",
+	"item.vanguard.reinhard_suit.lore.line1": "«Сильнейший рыцарь королевства.»",
+	"item.vanguard.reinhard_suit.lore.line2": "Носитель Божественных благословений.",
+	"item.vanguard.reinhard_suit.lore.usage": "Использовать — превратиться в Райнхарда ван Астреа",
+	"item.vanguard.reinhard_suit.lore.untransform": "Шифт + Использовать — вернуться в смертную форму"
 }
