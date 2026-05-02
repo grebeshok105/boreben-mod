@@ -4,7 +4,7 @@ description: Use when starting any work in this repo — base behavior rules fro
 triggers: ["model"]
 ---
 
-# Base Rules — Boreben Addon
+# Base Rules — Vanguard Addon
 
 Жёсткие правила поведения в этом репо. Это **аддон** к основному моду `superheroes` (репо `grebeshok105/grebeshok105`), а не самостоятельный мод. Он подключается к тому же набору механик и к той же creative-вкладке, но кодом живёт отдельно.
 

@@ -1,6 +1,8 @@
-# Boreben Mod
+# Vanguard Mod
 
 Аддон к моду [Superheroes Mod](https://github.com/grebeshok105/grebeshok105). Расширяет основной мод дополнительным контентом, который попадает в ту же creative-вкладку и держится в едином стиле.
+
+> Репозиторий называется `boreben-mod` (исторически), но сам мод — `vanguard`. ID, package, неймспейс ассетов — везде `vanguard`.
 
 ## Зависимости
 
@@ -21,7 +23,7 @@ export JAVA_HOME=/path/to/jdk-21
 ./gradlew build --no-daemon -x test
 ```
 
-Готовый jar: `build/libs/boreben-<version>.jar`.
+Готовый jar: `build/libs/vanguard-<version>.jar`.
 
 Подробнее — `.agents/skills/build-mod/SKILL.md`.
 
@@ -30,8 +32,8 @@ export JAVA_HOME=/path/to/jdk-21
 ```
 .agents/skills/        — skills для Devin / AI-агентов (правила, гайды по типовым задачам)
 AGENTS.md              — entry-point для AI: карта проекта, на что смотреть в первую очередь
-src/main/java/...      — код аддона (под пакетом com.boreben.mod)
-src/main/resources/    — fabric.mod.json, ассеты под неймспейсом `boreben`
+src/main/java/...      — код аддона (под пакетом com.vanguard.mod)
+src/main/resources/    — fabric.mod.json, ассеты под неймспейсом `vanguard`
 ```
 
 ## Для AI-агентов / Devin
@@ -45,7 +47,7 @@ src/main/resources/    — fabric.mod.json, ассеты под неймспей
 
 ## Как это аддон, а не отдельный мод
 
-- **Свой mod id (`boreben`)**, свой неймспейс ассетов
+- **Свой mod id (`vanguard`)**, свой неймспейс ассетов
 - **Не создаёт собственную creative-вкладку** — добавляет предметы в существующую `superheroes:superheroes` через `ItemGroupEvents.modifyEntriesEvent` (Fabric API)
 - **Не трогает internal API основного мода** — только публичные API и стандартный Fabric API
 - В `fabric.mod.json` явная зависимость `"superheroes": "*"`

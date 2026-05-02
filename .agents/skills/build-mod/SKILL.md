@@ -3,7 +3,7 @@ name: build-mod
 description: Use when user asks to build the addon, compile, check for errors, or produce a .jar. Run before opening a PR.
 ---
 
-# Build Mod — Boreben Addon
+# Build Mod — Vanguard Addon
 
 ## Пререквизит — JDK 21
 Loom требует Java 21. На VM лежит готовая дистрибуция в `/home/ubuntu/jdk-21.0.2`.
@@ -24,7 +24,7 @@ cd /tmp && wget -q https://download.oracle.com/java/21/archive/jdk-21.0.2_linux-
 ## Команды
 
 ```bash
-cd /home/ubuntu/repos/boreben-mod
+cd /home/ubuntu/repos/vanguard-mod
 export JAVA_HOME=/home/ubuntu/jdk-21.0.2 && export PATH=$JAVA_HOME/bin:$PATH
 
 ./gradlew compileJava --no-daemon          # быстрая проверка ошибок компиляции
@@ -36,8 +36,8 @@ export JAVA_HOME=/home/ubuntu/jdk-21.0.2 && export PATH=$JAVA_HOME/bin:$PATH
 
 ## Артефакты
 После успешного `build`:
-- `build/libs/boreben-<version>.jar` — release jar
-- `build/libs/boreben-<version>-sources.jar` — sources
+- `build/libs/vanguard-<version>.jar` — release jar
+- `build/libs/vanguard-<version>-sources.jar` — sources
 
 Версия из `gradle.properties: mod_version=...`.
 

@@ -3,7 +3,7 @@ name: minecraft-mod-dev
 description: Use when creating Minecraft mod content, integrating with mod APIs, setting up modding environments, or migrating to newer versions. Loader = Fabric, MC = 1.21, Java = 21.
 ---
 
-# Minecraft Mod Development — Boreben Addon
+# Minecraft Mod Development — Vanguard Addon
 
 Правила работы по mod-дев в этом репо. Стек жёстко зафиксирован: **Fabric / MC 1.21 / Java 21 / Mojang mappings**.
 

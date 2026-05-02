@@ -3,7 +3,7 @@ name: datagen
 description: Use when running data generation for blockstates, models, recipes, loot tables, or tags via DataProviders.
 ---
 
-# Data Generation — Boreben Addon
+# Data Generation — Vanguard Addon
 
 Используется Fabric DataGen API. Если в `build.gradle` ещё нет `runs { datagen { ... } }` — добавить как в основном моде:
 
@@ -15,7 +15,7 @@ loom {
             name "Data Generation"
             vmArg "-Dfabric-api.datagen"
             vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
-            vmArg "-Dfabric-api.datagen.modid=boreben"
+            vmArg "-Dfabric-api.datagen.modid=vanguard"
             runDir "build/datagen"
         }
     }
@@ -33,14 +33,14 @@ sourceSets {
 И в `fabric.mod.json`:
 ```json
 "entrypoints": {
-    "fabric-datagen": ["com.boreben.mod.datagen.BorebenDataGenerator"]
+    "fabric-datagen": ["com.vanguard.mod.datagen.VanguardDataGenerator"]
 }
 ```
 
 ## Команда
 
 ```bash
-cd /home/ubuntu/repos/boreben-mod
+cd /home/ubuntu/repos/vanguard-mod
 export JAVA_HOME=/home/ubuntu/jdk-21.0.2 && export PATH=$JAVA_HOME/bin:$PATH
 ./gradlew runDatagen --no-daemon
 ```
@@ -55,7 +55,7 @@ export JAVA_HOME=/home/ubuntu/jdk-21.0.2 && export PATH=$JAVA_HOME/bin:$PATH
 - Рецепты — через `FabricRecipeProvider`
 
 ## Workflow
-1. Добавить/изменить DataProvider в `src/main/java/com/boreben/mod/datagen/`
+1. Добавить/изменить DataProvider в `src/main/java/com/vanguard/mod/datagen/`
 2. Запустить `./gradlew runDatagen`
 3. Проверить diff в `src/main/generated/`
 4. Закоммитить и сгенерированное (Fabric ожидает их в репо)

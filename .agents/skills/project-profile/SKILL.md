@@ -1,19 +1,19 @@
 ---
 name: project-profile
-description: Use when working in this repo — provides core mod identifiers, versions, and the addon relationship for the Boreben addon.
+description: Use when working in this repo — provides core mod identifiers, versions, and the addon relationship for the Vanguard addon.
 triggers: ["model"]
 ---
 
-# Project Profile — Boreben Addon
+# Project Profile — Vanguard Addon
 
 > Это **аддон** к моду `superheroes` (`grebeshok105/grebeshok105`). Он добавляет контент в ту же creative-вкладку и работает поверх механик основного мода. Ничего из основного мода не дублируем.
 
 ## Идентификаторы
-- Mod ID: `boreben` (TODO: подтвердить пользователю при первой реальной задаче)
-- Display Name: `Boreben Mod`
-- Java package: `com.boreben.mod` (TODO: подтвердить)
-- Main entrypoint: `com.boreben.mod.BorebenMod`
-- Client entrypoint: `com.boreben.mod.client.BorebenClient`
+- Mod ID: `vanguard` (TODO: подтвердить пользователю при первой реальной задаче)
+- Display Name: `Vanguard Mod`
+- Java package: `com.vanguard.mod` (TODO: подтвердить)
+- Main entrypoint: `com.vanguard.mod.VanguardMod`
+- Client entrypoint: `com.vanguard.mod.client.VanguardClient`
 
 ## Версии (синхронизированы с основным модом)
 - Minecraft: `1.21`

@@ -3,7 +3,7 @@ name: publish-mod
 description: Use when user asks to publish the addon to CurseForge / Modrinth (external platforms, not GitHub releases).
 ---
 
-# Publish to CurseForge / Modrinth — Boreben Addon
+# Publish to CurseForge / Modrinth — Vanguard Addon
 
 GitHub releases — см. skill `release-mod`. Этот skill — про внешние платформы.
 
@@ -15,7 +15,7 @@ GitHub releases — см. skill `release-mod`. Этот skill — про вне�
 ## Если plugin настроен
 
 ```bash
-cd /home/ubuntu/repos/boreben-mod
+cd /home/ubuntu/repos/vanguard-mod
 export JAVA_HOME=/home/ubuntu/jdk-21.0.2 && export PATH=$JAVA_HOME/bin:$PATH
 ./gradlew build --no-daemon -x test
 ./gradlew publishMods --no-daemon  # mod-publish-plugin

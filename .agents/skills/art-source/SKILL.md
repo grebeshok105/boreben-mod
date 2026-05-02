@@ -3,7 +3,7 @@ name: art-source
 description: Use when adding textures, sounds, particles, or any visual/audio assets to the addon — check art-source/ first for existing material before creating new.
 ---
 
-# Art Source Library — Boreben Addon
+# Art Source Library — Vanguard Addon
 
 Если в репо есть папка `art-source/` на корне — это **склад сырых ассетов**, куда пользователь кидает всё что может пригодиться (текстуры, звуки, модели, FX-спрайты, референсы).
 
@@ -22,7 +22,7 @@ unzip -p art-source/<archive>.zip "path/inside/archive.png" > /tmp/some.png
 unzip -q art-source/<archive>.zip -d /tmp/art-source/
 ```
 
-После выбора ассета — **скопировать и переименовать** в `src/main/resources/assets/boreben/textures/...` (или `sounds/`, и т.д.). Не ссылаться на файл прямо из `art-source/` — рантайм-ресурсы должны быть в `src/main/resources/`.
+После выбора ассета — **скопировать и переименовать** в `src/main/resources/assets/vanguard/textures/...` (или `sounds/`, и т.д.). Не ссылаться на файл прямо из `art-source/` — рантайм-ресурсы должны быть в `src/main/resources/`.
 
 ## Форматы
 
@@ -36,7 +36,7 @@ unzip -q art-source/<archive>.zip -d /tmp/art-source/
 ## Когда пользователь кидает новый ассет
 1. Скачать / принять файл.
 2. Положить в `art-source/` (или в подпапку `art-source/inbox/` если много).
-3. Если нужно в runtime — скопировать в `src/main/resources/assets/boreben/...` (НЕ в `assets/superheroes/...`!)
+3. Если нужно в runtime — скопировать в `src/main/resources/assets/vanguard/...` (НЕ в `assets/superheroes/...`!)
 4. Закоммитить и то, и другое (art-source — как source-of-truth, runtime — как реально используемое).
 
 ## Правила

@@ -3,7 +3,7 @@ name: release-mod
 description: Use when user asks to release the addon, create a GitHub release, tag a version, or publish a build. Triggered by "релиз", "release", "тег".
 ---
 
-# Release Mod — Boreben Addon
+# Release Mod — Vanguard Addon
 
 Создание GitHub-релиза с прикреплённым jar.
 
@@ -11,7 +11,7 @@ description: Use when user asks to release the addon, create a GitHub release, t
 
 1. **Перейти на baseline и подтянуть свежий**
 ```bash
-cd /home/ubuntu/repos/boreben-mod
+cd /home/ubuntu/repos/vanguard-mod
 git checkout main && git pull origin main   # или baseline если ветка по-другому называется
 ```
 
@@ -25,12 +25,12 @@ git checkout main && git pull origin main   # или baseline если ветк�
 ```bash
 export JAVA_HOME=/home/ubuntu/jdk-21.0.2 && export PATH=$JAVA_HOME/bin:$PATH
 ./gradlew build --no-daemon -x test
-ls build/libs/boreben-<X>.jar  # проверить что собрался
+ls build/libs/vanguard-<X>.jar  # проверить что собрался
 ```
 
 4. **Создать release**
 ```bash
-gh release create v<X> build/libs/boreben-<X>.jar \
+gh release create v<X> build/libs/vanguard-<X>.jar \
   --title "v<X> — <короткое описание>" \
   --notes "<markdown notes>"
 ```
