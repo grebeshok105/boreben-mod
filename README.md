@@ -12,7 +12,9 @@
 | Fabric Loader | >= 0.19.2 |
 | Fabric API | 0.102.0+1.21 |
 | Java | 21 |
-| **Superheroes Mod** | (hard dep, точная версия в `gradle.properties` / fabric.mod.json) |
+| **Superheroes Mod** | `>=2.3.0` (jar лежит в `libs/`, см. `libs/README.md`) |
+| GeckoLib | `4.5.8` (3D-модели, нужен для меча Reid в Этапе 4d) |
+| Player Animator (KosmX) | `2.0.0-alpha1+1.21` (анимации игрока для Reinhard) |
 
 Без основного `superheroes` мода аддон не запустится — это by design.
 
@@ -26,6 +28,8 @@ export JAVA_HOME=/path/to/jdk-21
 Готовый jar: `build/libs/vanguard-<version>.jar`.
 
 Подробнее — `.agents/skills/build-mod/SKILL.md`.
+
+> Если `superheroes-X.Y.Z.jar` отсутствует в `libs/` — скачай с [Releases](https://github.com/grebeshok105/grebeshok105/releases) и положи туда. См. `libs/README.md`.
 
 ## Структура
 
