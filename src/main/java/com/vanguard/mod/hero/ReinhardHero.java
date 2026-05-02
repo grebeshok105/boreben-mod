@@ -54,7 +54,10 @@ public final class ReinhardHero implements Hero {
 		return List.of(
 				SwordAbilityIds.REID_DRAW,
 				SwordAbilityIds.AIR_SLASH,
-				SwordAbilityIds.SKY_VAULT
+				SwordAbilityIds.SKY_VAULT,
+				SwordAbilityIds.HEAVENS_SWORD_STRIKE,
+				SwordAbilityIds.SWORD_WAVE,
+				SwordAbilityIds.COUNTER_RIPOSTE
 		);
 	}
 

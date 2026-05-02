@@ -21,6 +21,8 @@ public final class SwordKeyDispatcher {
 		drain(VanguardKeys.AIR_SLASH, SwordAbilityIds.AIR_SLASH);
 		drain(VanguardKeys.REID_DRAW, SwordAbilityIds.REID_DRAW);
 		drain(VanguardKeys.SKY_VAULT, SwordAbilityIds.SKY_VAULT);
+		drain(VanguardKeys.HEAVENS_SWORD, SwordAbilityIds.HEAVENS_SWORD_STRIKE);
+		drain(VanguardKeys.SWORD_WAVE, SwordAbilityIds.SWORD_WAVE);
 	}
 
 	private static void drain(KeyMapping key, ResourceLocation abilityId) {

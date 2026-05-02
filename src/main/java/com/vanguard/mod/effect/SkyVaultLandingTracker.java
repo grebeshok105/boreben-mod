@@ -1,5 +1,7 @@
 package com.vanguard.mod.effect;
 
+import com.vanguard.mod.damage.VanguardDamageSources;
+import com.vanguard.mod.damage.VanguardDamageTypes;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.core.particles.ParticleTypes;
@@ -83,7 +85,7 @@ public final class SkyVaultLandingTracker {
 			Vec3 dir = new Vec3(push.x / horizontal, 0.0, push.z / horizontal);
 			living.knockback(2.4, -dir.x, -dir.z);
 			living.setDeltaMovement(living.getDeltaMovement().add(0.0, 0.6, 0.0));
-			living.hurt(level.damageSources().playerAttack(player), 6.0f);
+			living.hurt(VanguardDamageSources.source(level, VanguardDamageTypes.SKY_VAULT_SHOCKWAVE, player), 6.0f);
 			living.hurtMarked = true;
 		}
 	}
