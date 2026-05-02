@@ -1,6 +1,7 @@
 package com.vanguard.mod.item;
 
 import com.vanguard.mod.VanguardMod;
+import com.vanguard.mod.transform.ReinhardSuitItem;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Item;
@@ -8,7 +9,7 @@ import net.minecraft.world.item.Item;
 public final class VanguardItems {
 	public static final Item REINHARD_SUIT = register(
 			"reinhard_suit",
-			new Item(new Item.Properties().stacksTo(1))
+			new ReinhardSuitItem(new Item.Properties().stacksTo(1).fireResistant())
 	);
 
 	private VanguardItems() {
