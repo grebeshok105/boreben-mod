@@ -1,0 +1,100 @@
+{
+  "spirit_slash_horizontal": {
+    "category": "player",
+    "subtitle": "subtitles.vanguard.spirit_slash",
+    "sounds": [
+      { "name": "vanguard:spirit/slash_horizontal", "stream": false }
+    ]
+  },
+  "spirit_slash_vertical": {
+    "category": "player",
+    "subtitle": "subtitles.vanguard.spirit_slash",
+    "sounds": [
+      { "name": "vanguard:spirit/slash_vertical", "stream": false }
+    ]
+  },
+  "spirit_blast_big": {
+    "category": "player",
+    "subtitle": "subtitles.vanguard.spirit_blast",
+    "sounds": [
+      { "name": "vanguard:spirit/blast_big", "stream": false }
+    ]
+  },
+  "spirit_blast_small": {
+    "category": "player",
+    "subtitle": "subtitles.vanguard.spirit_blast",
+    "sounds": [
+      { "name": "vanguard:spirit/blast_small", "stream": false }
+    ]
+  },
+  "sword_charge": {
+    "category": "player",
+    "subtitle": "subtitles.vanguard.sword_charge",
+    "sounds": [
+      { "name": "vanguard:sword/charge", "stream": false }
+    ]
+  },
+  "sword_thrust": {
+    "category": "player",
+    "subtitle": "subtitles.vanguard.sword_thrust",
+    "sounds": [
+      { "name": "vanguard:sword/thrust", "stream": false }
+    ]
+  },
+  "sword_smash": {
+    "category": "player",
+    "subtitle": "subtitles.vanguard.sword_smash",
+    "sounds": [
+      { "name": "vanguard:sword/smash", "stream": false }
+    ]
+  },
+  "sword_swipe": {
+    "category": "player",
+    "subtitle": "subtitles.vanguard.sword_swipe",
+    "sounds": [
+      { "name": "vanguard:sword/swipe", "stream": false }
+    ]
+  },
+  "sword_crit": {
+    "category": "player",
+    "subtitle": "subtitles.vanguard.sword_crit",
+    "sounds": [
+      { "name": "vanguard:sword/crit", "stream": false }
+    ]
+  },
+  "sword_hit_shield": {
+    "category": "player",
+    "subtitle": "subtitles.vanguard.sword_hit_shield",
+    "sounds": [
+      { "name": "vanguard:sword/hit_shield", "stream": false }
+    ]
+  },
+  "phoenix_restore": {
+    "category": "player",
+    "subtitle": "subtitles.vanguard.phoenix_restore",
+    "sounds": [
+      { "name": "vanguard:phoenix/restore", "stream": false }
+    ]
+  },
+  "phoenix_knight_fall": {
+    "category": "player",
+    "subtitle": "subtitles.vanguard.phoenix_knight_fall",
+    "sounds": [
+      { "name": "vanguard:phoenix/knight_fall", "stream": false }
+    ]
+  },
+  "phoenix_blinding_light": {
+    "category": "player",
+    "subtitle": "subtitles.vanguard.phoenix_blinding_light",
+    "sounds": [
+      { "name": "vanguard:phoenix/blinding_light", "stream": false }
+    ]
+  },
+  "phoenix_dawnbreaker": {
+    "category": "player",
+    "subtitle": "subtitles.vanguard.phoenix_dawnbreaker",
+    "sounds": [
+      { "name": "vanguard:phoenix/dawnbreaker", "stream": false }
+    ]
+  }
+}
