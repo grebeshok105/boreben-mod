@@ -3,6 +3,9 @@ package com.vanguard.mod.transform;
 import com.example.superheroes.api.HeroApi;
 import com.vanguard.mod.attachment.ReinhardData;
 import com.vanguard.mod.attachment.VanguardAttachments;
+import com.vanguard.mod.effect.ReinhardPhoenixController;
+import com.vanguard.mod.effect.ReinhardWishController;
+import com.vanguard.mod.effect.ReinhardWorthyOpponentTracker;
 import com.vanguard.mod.hero.ReinhardHero;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -36,11 +39,18 @@ public class ReinhardSuitItem extends Item {
 			boolean changed;
 			if (player.isShiftKeyDown()) {
 				changed = HeroApi.untransform(serverPlayer);
+				if (changed) {
+					ReinhardWorthyOpponentTracker.reset(serverPlayer.getUUID());
+					ReinhardWishController.resetForTransform(serverPlayer.getUUID());
+					ReinhardPhoenixController.clearRising(serverPlayer.getUUID());
+				}
 			} else {
 				changed = HeroApi.transform(serverPlayer, ReinhardHero.ID);
 				if (changed) {
 					ReinhardData reset = ReinhardData.EMPTY.withTransformedAt(serverPlayer.tickCount);
 					serverPlayer.setAttached(VanguardAttachments.REINHARD_DATA, reset);
+					ReinhardWorthyOpponentTracker.reset(serverPlayer.getUUID());
+					ReinhardWishController.resetForTransform(serverPlayer.getUUID());
 				}
 			}
 			return changed ? InteractionResultHolder.consume(stack) : InteractionResultHolder.fail(stack);

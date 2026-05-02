@@ -5,9 +5,13 @@ import com.example.superheroes.api.HeroApi;
 import com.vanguard.mod.attachment.VanguardAttachments;
 import com.vanguard.mod.effect.ReinhardAbsoluteRegenController;
 import com.vanguard.mod.effect.ReinhardPhaseController;
+import com.vanguard.mod.effect.ReinhardPhoenixController;
 import com.vanguard.mod.effect.ReinhardSuperReflexController;
+import com.vanguard.mod.effect.ReinhardWishController;
+import com.vanguard.mod.effect.ReinhardWorthyOpponentTracker;
 import com.vanguard.mod.hero.ReinhardHero;
 import com.vanguard.mod.item.VanguardItems;
+import com.vanguard.mod.network.VanguardNetworking;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.resources.ResourceLocation;
@@ -32,10 +36,17 @@ public final class VanguardMod implements ModInitializer {
 		HeroApi.register(new ReinhardHero());
 
 		// Order matters: dodge runs before damage counting so dodged hits don't
-		// pump the phase tracker.
+		// pump the phase tracker. Worthy and wish trackers also subscribe to
+		// ALLOW_DAMAGE — wish runs first so adapted hits never feed the worthy
+		// counter, and worthy runs before phase so a successful wish-block
+		// doesn't bump the phase threshold.
 		ReinhardSuperReflexController.init();
+		ReinhardWishController.init();
+		ReinhardWorthyOpponentTracker.init();
 		ReinhardPhaseController.init();
 		ReinhardAbsoluteRegenController.init();
+		ReinhardPhoenixController.init();
+		VanguardNetworking.init();
 
 		ItemGroupEvents.modifyEntriesEvent(CreativeTabIds.SUPERHEROES_TAB)
 				.register(entries -> entries.accept(VanguardItems.REINHARD_SUIT));

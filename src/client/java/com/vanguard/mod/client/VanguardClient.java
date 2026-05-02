@@ -1,11 +1,41 @@
 package com.vanguard.mod.client;
 
+import com.vanguard.mod.client.hud.WishRadialHud;
+import com.vanguard.mod.client.input.VanguardKeys;
+import com.vanguard.mod.client.render.PhoenixVfx;
+import com.vanguard.mod.client.render.WorthyMarkerRenderer;
+import com.vanguard.mod.client.state.ClientWishesState;
+import com.vanguard.mod.client.state.ClientWorthyMarks;
+import com.vanguard.mod.network.PhoenixResurrectS2CPayload;
+import com.vanguard.mod.network.WishesStateS2CPayload;
+import com.vanguard.mod.network.WorthyMarksS2CPayload;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
+
+import java.util.HashSet;
 
 public final class VanguardClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
-		// Client-side init for the addon. GeckoLib renderers, HUD overlays,
-		// and key bindings will be registered here in later stages.
+		VanguardKeys.init();
+
+		ClientPlayNetworking.registerGlobalReceiver(WorthyMarksS2CPayload.TYPE, (payload, context) ->
+				context.client().execute(() -> ClientWorthyMarks.update(new HashSet<>(payload.worthyIds()))));
+
+		ClientPlayNetworking.registerGlobalReceiver(WishesStateS2CPayload.TYPE, (payload, context) ->
+				context.client().execute(() -> ClientWishesState.update(
+						payload.recentSources(), payload.adaptations(), payload.wishesUsed())));
+
+		ClientPlayNetworking.registerGlobalReceiver(PhoenixResurrectS2CPayload.TYPE, (payload, context) ->
+				context.client().execute(() -> PhoenixVfx.burst(payload.x(), payload.y(), payload.z())));
+
+		ClientTickEvents.END_CLIENT_TICK.register(WishRadialHud::clientTick);
+
+		HudRenderCallback.EVENT.register(WishRadialHud::render);
+
+		WorldRenderEvents.AFTER_ENTITIES.register(WorthyMarkerRenderer::render);
 	}
 }
