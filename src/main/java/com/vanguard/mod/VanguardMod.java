@@ -1,14 +1,22 @@
 package com.vanguard.mod;
 
+import com.example.superheroes.api.AbilityApi;
 import com.example.superheroes.api.CreativeTabIds;
 import com.example.superheroes.api.HeroApi;
+import com.vanguard.mod.ability.sword.AirSlashAbility;
+import com.vanguard.mod.ability.sword.ReidDrawAbility;
+import com.vanguard.mod.ability.sword.ReidDrawState;
+import com.vanguard.mod.ability.sword.SkyVaultJumpAbility;
+import com.vanguard.mod.ability.sword.SwordCooldowns;
 import com.vanguard.mod.attachment.VanguardAttachments;
+import com.vanguard.mod.effect.ReidSwordWorthyGate;
 import com.vanguard.mod.effect.ReinhardAbsoluteRegenController;
 import com.vanguard.mod.effect.ReinhardPhaseController;
 import com.vanguard.mod.effect.ReinhardPhoenixController;
 import com.vanguard.mod.effect.ReinhardSuperReflexController;
 import com.vanguard.mod.effect.ReinhardWishController;
 import com.vanguard.mod.effect.ReinhardWorthyOpponentTracker;
+import com.vanguard.mod.effect.SkyVaultLandingTracker;
 import com.vanguard.mod.hero.ReinhardHero;
 import com.vanguard.mod.item.VanguardItems;
 import com.vanguard.mod.network.VanguardNetworking;
@@ -35,21 +43,34 @@ public final class VanguardMod implements ModInitializer {
 
 		HeroApi.register(new ReinhardHero());
 
+		AbilityApi.register(new ReidDrawAbility());
+		AbilityApi.register(new AirSlashAbility());
+		AbilityApi.register(new SkyVaultJumpAbility());
+
 		// Order matters: dodge runs before damage counting so dodged hits don't
 		// pump the phase tracker. Worthy and wish trackers also subscribe to
 		// ALLOW_DAMAGE — wish runs first so adapted hits never feed the worthy
 		// counter, and worthy runs before phase so a successful wish-block
-		// doesn't bump the phase threshold.
+		// doesn't bump the phase threshold. The sword worthy-gate runs LAST so
+		// that earlier handlers (dodge / wish) can short-circuit before we
+		// reach the PvP filter.
 		ReinhardSuperReflexController.init();
 		ReinhardWishController.init();
 		ReinhardWorthyOpponentTracker.init();
 		ReinhardPhaseController.init();
 		ReinhardAbsoluteRegenController.init();
 		ReinhardPhoenixController.init();
+		ReidSwordWorthyGate.init();
+		ReidDrawState.init();
+		SwordCooldowns.init();
+		SkyVaultLandingTracker.init();
 		VanguardNetworking.init();
 
 		ItemGroupEvents.modifyEntriesEvent(CreativeTabIds.SUPERHEROES_TAB)
-				.register(entries -> entries.accept(VanguardItems.REINHARD_SUIT));
+				.register(entries -> {
+					entries.accept(VanguardItems.REINHARD_SUIT);
+					entries.accept(VanguardItems.DRAGON_SWORD_REID);
+				});
 
 		LOGGER.info("Vanguard addon initialized — Reinhard hero registered");
 	}

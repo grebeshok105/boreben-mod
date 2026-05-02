@@ -1,6 +1,8 @@
 package com.vanguard.mod.network;
 
+import com.example.superheroes.api.AbilityApi;
 import com.example.superheroes.api.HeroApi;
+import com.example.superheroes.ability.Ability;
 import com.vanguard.mod.attachment.ReinhardData;
 import com.vanguard.mod.attachment.VanguardAttachments;
 import com.vanguard.mod.effect.ReinhardWishController;
@@ -38,11 +40,22 @@ public final class VanguardNetworking {
 		PayloadTypeRegistry.playS2C().register(WishesStateS2CPayload.TYPE, WishesStateS2CPayload.STREAM_CODEC);
 
 		PayloadTypeRegistry.playC2S().register(UseWishC2SPayload.TYPE, UseWishC2SPayload.STREAM_CODEC);
+		PayloadTypeRegistry.playC2S().register(SwordAbilityActivateC2SPayload.TYPE, SwordAbilityActivateC2SPayload.STREAM_CODEC);
 
 		ServerPlayNetworking.registerGlobalReceiver(UseWishC2SPayload.TYPE, (payload, context) -> {
 			ServerPlayer player = context.player();
 			int idx = payload.index();
 			context.server().execute(() -> ReinhardWishController.activateWish(player, idx));
+		});
+
+		ServerPlayNetworking.registerGlobalReceiver(SwordAbilityActivateC2SPayload.TYPE, (payload, context) -> {
+			ServerPlayer player = context.player();
+			ResourceLocation abilityId = payload.abilityId();
+			context.server().execute(() -> {
+				Ability ability = AbilityApi.get(abilityId);
+				if (ability == null) return;
+				ability.tryActivate(player);
+			});
 		});
 
 		ServerTickEvents.END_SERVER_TICK.register(server -> {

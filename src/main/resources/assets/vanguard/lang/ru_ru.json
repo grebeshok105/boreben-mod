@@ -5,8 +5,19 @@
 	"item.vanguard.reinhard_suit.lore.usage": "Использовать — превратиться в Райнхарда ван Астреа",
 	"item.vanguard.reinhard_suit.lore.untransform": "Шифт + Использовать — вернуться в смертную форму",
 
+	"item.vanguard.dragon_sword_reid": "Меч Дракона Рейд",
+	"item.vanguard.dragon_sword_reid.lore.line1": "«Клинок, рассекающий даже узы судьбы.»",
+	"item.vanguard.dragon_sword_reid.lore.line2": "Бьёт лишь тех, кого сочтёт достойным.",
+
 	"key.categories.vanguard": "Vanguard аддон",
 	"key.vanguard.wish_radial": "Радиальное меню желаний",
+	"key.vanguard.reid_draw": "Рейд: Обнажить клинок",
+	"key.vanguard.air_slash": "Рейд: Рассечение воздуха",
+	"key.vanguard.sky_vault": "Рейд: Прыжок в небо",
+
+	"ability.vanguard.reid_draw": "Обнажение Рейда",
+	"ability.vanguard.air_slash": "Рассечение воздуха",
+	"ability.vanguard.sky_vault_jump": "Прыжок в небо",
 
 	"vanguard.wish.hub": "ЖЕЛАНИЯ",
 	"vanguard.wish.adapted": "§9адаптировано",

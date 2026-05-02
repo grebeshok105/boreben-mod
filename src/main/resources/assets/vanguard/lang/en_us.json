@@ -5,8 +5,19 @@
 	"item.vanguard.reinhard_suit.lore.usage": "Use: transform into Reinhard van Astrea",
 	"item.vanguard.reinhard_suit.lore.untransform": "Sneak + Use: revert to mortal form",
 
+	"item.vanguard.dragon_sword_reid": "Dragon Sword Reid",
+	"item.vanguard.dragon_sword_reid.lore.line1": "\"The blade that severs even the bonds of fate.\"",
+	"item.vanguard.dragon_sword_reid.lore.line2": "Strikes only those it deems worthy.",
+
 	"key.categories.vanguard": "Vanguard Addon",
 	"key.vanguard.wish_radial": "Wish Radial Menu",
+	"key.vanguard.reid_draw": "Reid: Draw",
+	"key.vanguard.air_slash": "Reid: Air Slash",
+	"key.vanguard.sky_vault": "Reid: Sky Vault Jump",
+
+	"ability.vanguard.reid_draw": "Reid Draw",
+	"ability.vanguard.air_slash": "Air Slash",
+	"ability.vanguard.sky_vault_jump": "Sky Vault Jump",
 
 	"vanguard.wish.hub": "WISHES",
 	"vanguard.wish.adapted": "§9adapted",
