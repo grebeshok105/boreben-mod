@@ -3,5 +3,12 @@
 	"item.vanguard.reinhard_suit.lore.line1": "\"The strongest knight of the kingdom.\"",
 	"item.vanguard.reinhard_suit.lore.line2": "Bearer of the Divine Protections.",
 	"item.vanguard.reinhard_suit.lore.usage": "Use: transform into Reinhard van Astrea",
-	"item.vanguard.reinhard_suit.lore.untransform": "Sneak + Use: revert to mortal form"
+	"item.vanguard.reinhard_suit.lore.untransform": "Sneak + Use: revert to mortal form",
+
+	"key.categories.vanguard": "Vanguard Addon",
+	"key.vanguard.wish_radial": "Wish Radial Menu",
+
+	"vanguard.wish.hub": "WISHES",
+	"vanguard.wish.adapted": "§9adapted",
+	"vanguard.worthy.tag": "WORTHY"
 }
