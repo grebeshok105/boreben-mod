@@ -50,7 +50,7 @@ ID вкладки основного мода: `superheroes:superheroes` (см. 
 В аддоне не создавать собственную вкладку. Вместо этого:
 
 ```java
-package com.boreben.mod.item;
+package com.vanguard.mod.item;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.core.registries.Registries;
@@ -58,28 +58,28 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 
-public final class BorebenItemGroupHook {
+public final class VanguardItemGroupHook {
     private static final ResourceKey<CreativeModeTab> SUPERHEROES_TAB =
         ResourceKey.create(Registries.CREATIVE_MODE_TAB,
             ResourceLocation.fromNamespaceAndPath("superheroes", "superheroes"));
 
     public static void init() {
         ItemGroupEvents.modifyEntriesEvent(SUPERHEROES_TAB).register(entries -> {
-            entries.accept(BorebenItems.MY_NEW_ITEM);
-            // entries.accept(BorebenItems.OTHER_ITEM);
+            entries.accept(VanguardItems.MY_NEW_ITEM);
+            // entries.accept(VanguardItems.OTHER_ITEM);
         });
     }
 
-    private BorebenItemGroupHook() {}
+    private VanguardItemGroupHook() {}
 }
 ```
 
-Зов из `BorebenMod.onInitialize()`:
+Зов из `VanguardMod.onInitialize()`:
 ```java
 @Override
 public void onInitialize() {
-    BorebenItems.init();
-    BorebenItemGroupHook.init();
+    VanguardItems.init();
+    VanguardItemGroupHook.init();
 }
 ```
 
@@ -91,13 +91,13 @@ public void onInitialize() {
 
 ```
 src/main/resources/
-├── assets/boreben/
+├── assets/vanguard/
 │   ├── lang/en_us.json
 │   ├── lang/ru_ru.json
 │   ├── models/item/...
 │   ├── textures/item/...
 │   └── sounds.json (опционально)
-└── data/boreben/
+└── data/vanguard/
     ├── recipes/...
     └── loot_table/blocks/...
 ```
@@ -109,8 +109,8 @@ src/main/resources/
 Ключи всегда префиксованы своим mod id:
 ```json
 {
-  "item.boreben.cool_artifact": "Cool Artifact",
-  "block.boreben.weird_block": "Weird Block"
+  "item.vanguard.cool_artifact": "Cool Artifact",
+  "block.vanguard.weird_block": "Weird Block"
 }
 ```
 
@@ -118,19 +118,19 @@ src/main/resources/
 
 ## 6. Звуки
 
-`assets/boreben/sounds.json` + регистрация в `ModSounds`-аналоге аддона:
+`assets/vanguard/sounds.json` + регистрация в `ModSounds`-аналоге аддона:
 ```java
-public final class BorebenSounds {
+public final class VanguardSounds {
     public static final SoundEvent FOO = register("foo");
 
     private static SoundEvent register(String name) {
-        ResourceLocation id = ResourceLocation.fromNamespaceAndPath("boreben", name);
+        ResourceLocation id = ResourceLocation.fromNamespaceAndPath("vanguard", name);
         return Registry.register(BuiltInRegistries.SOUND_EVENT, id, SoundEvent.createVariableRangeEvent(id));
     }
 
     public static void init() {} // загрузка статики
 
-    private BorebenSounds() {}
+    private VanguardSounds() {}
 }
 ```
 

@@ -1,4 +1,4 @@
-# AGENTS.md — Boreben Addon
+# AGENTS.md — Vanguard Addon
 
 Гайд для Devin / других AI-агентов. Читается **в начале каждой сессии автоматически**. Назначение — за 1-2 минуты дать карту проекта: что это, как устроено, что НЕ трогать.
 
@@ -7,9 +7,10 @@
 ## TL;DR
 
 - **Что это**: **аддон** к моду `superheroes` (репо `grebeshok105/grebeshok105`). Не самостоятельный мод. Контент попадает в ту же creative-вкладку, что и основной мод.
+- **Репо vs Mod ID**: репозиторий называется `boreben-mod` (исторически, не переименовать), но сам мод — **`vanguard`**. Везде в коде/ассетах/локализации использовать `vanguard`, не `boreben`.
 - **Стек**: Fabric 1.21, Java 21, Mojang mappings (как у основного мода)
-- **Mod ID**: `boreben` (пока tentative, подтвердить при первой реальной задаче)
-- **Java package**: `com.boreben.mod`
+- **Mod ID**: `vanguard` (пока tentative, подтвердить при первой реальной задаче)
+- **Java package**: `com.vanguard.mod`
 - **Hard dep**: `superheroes` (без него аддон не загрузится — это правильно)
 - **Build**: `./gradlew build --no-daemon -x test` (см. skill `build-mod`)
 - **Branching**: `devin/$(date +%s)-<short-name>`
@@ -21,7 +22,7 @@
 ## Главные принципы аддона
 
 1. **Не дублировать механики основного мода**. Если нужна механика основного мода — потреблять через публичное API. Если публичного API нет — попросить пользователя/автора основного мода вынести его, не копировать internal в аддон.
-2. **Свой неймспейс**. Все ID, ассеты, локализация — под `boreben`, никогда под `superheroes`.
+2. **Свой неймспейс**. Все ID, ассеты, локализация — под `vanguard`, никогда под `superheroes`.
 3. **Свою creative-вкладку не создавать**. Использовать `ItemGroupEvents.modifyEntriesEvent(superheroes:superheroes)`. См. skill `addon-integration`.
 4. **Версии и стек как у основного мода**. Любой апдейт MC/Fabric делается сначала там, потом синхронно тут.
 
@@ -32,8 +33,8 @@
 | Хочешь… | Файл/папка | Skill |
 |---|---|---|
 | Понять как встроить контент в creative-tab основного мода | — | `addon-integration` |
-| Добавить предмет | `src/main/java/com/boreben/mod/item/` + регистрация | `add-item` |
-| Добавить блок | `src/main/java/com/boreben/mod/block/` + регистрация | `add-block` |
+| Добавить предмет | `src/main/java/com/vanguard/mod/item/` + регистрация | `add-item` |
+| Добавить блок | `src/main/java/com/vanguard/mod/block/` + регистрация | `add-block` |
 | Собрать jar | `./gradlew build --no-daemon -x test` | `build-mod` |
 | Сгенерировать модели/loot/recipes | `./gradlew runDatagen` | `datagen` |
 | Разобрать краш | `run/crash-reports/` или `run/logs/latest.log` | `debug-crash` |
@@ -51,12 +52,12 @@
 
 | Параметр | Значение |
 |---|---|
-| Mod ID | `boreben` (TODO: подтвердить) |
-| Display Name | `Boreben Mod` |
-| Java package | `com.boreben.mod` (TODO: подтвердить) |
-| Main entrypoint | `com.boreben.mod.BorebenMod` |
-| Client entrypoint | `com.boreben.mod.client.BorebenClient` |
-| Datagen entrypoint | `com.boreben.mod.datagen.BorebenDataGenerator` |
+| Mod ID | `vanguard` (TODO: подтвердить) |
+| Display Name | `Vanguard Mod` |
+| Java package | `com.vanguard.mod` (TODO: подтвердить) |
+| Main entrypoint | `com.vanguard.mod.VanguardMod` |
+| Client entrypoint | `com.vanguard.mod.client.VanguardClient` |
+| Datagen entrypoint | `com.vanguard.mod.datagen.VanguardDataGenerator` |
 | Minecraft | `1.21` |
 | Fabric Loader | `>=0.19.2` |
 | Fabric API | `0.102.0+1.21` |
@@ -73,11 +74,11 @@
 ## Архитектура аддона
 
 ```
-BorebenMod (entrypoint)
-├── BorebenItems.init()           # регистрация предметов под боребен-неймспейсом
-├── BorebenBlocks.init()          # регистрация блоков
-├── BorebenItemGroupHook.init()   # ItemGroupEvents → добавляет всё в superheroes:superheroes tab
-├── BorebenSounds.init()          # звуки если есть
+VanguardMod (entrypoint)
+├── VanguardItems.init()           # регистрация предметов под vanguard-неймспейсом
+├── VanguardBlocks.init()          # регистрация блоков
+├── VanguardItemGroupHook.init()   # ItemGroupEvents → добавляет всё в superheroes:superheroes tab
+├── VanguardSounds.init()          # звуки если есть
 └── ...
 ```
 
@@ -88,7 +89,7 @@ BorebenMod (entrypoint)
 ## Структура исходников
 
 ```
-boreben-mod/
+vanguard-mod/
 ├── AGENTS.md                              # этот файл
 ├── README.md                              # описание для людей
 ├── build.gradle                           # Fabric Loom build script
@@ -112,11 +113,11 @@ boreben-mod/
 │       └── publish-mod/SKILL.md
 ├── src/
 │   └── main/
-│       ├── java/com/boreben/mod/...        # код аддона
+│       ├── java/com/vanguard/mod/...        # код аддона
 │       └── resources/
 │           ├── fabric.mod.json
-│           ├── boreben.mixins.json (если будут)
-│           └── assets/boreben/             # ассеты под СВОЙ неймспейс
+│           ├── vanguard.mixins.json (если будут)
+│           └── assets/vanguard/             # ассеты под СВОЙ неймспейс
 │               ├── lang/{en_us,ru_ru}.json
 │               ├── models/...
 │               └── textures/...

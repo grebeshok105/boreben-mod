@@ -36,12 +36,12 @@ triggers: ["model"]
 
 Стандартный helper для аддона:
 ```java
-public final class BorebenIds {
-    public static final String NAMESPACE = "boreben";
+public final class VanguardIds {
+    public static final String NAMESPACE = "vanguard";
     public static ResourceLocation of(String path) {
         return ResourceLocation.fromNamespaceAndPath(NAMESPACE, path);
     }
-    private BorebenIds() {}
+    private VanguardIds() {}
 }
 ```
-И всегда использовать `BorebenIds.of("foo")`, не литералы.
+И всегда использовать `VanguardIds.of("foo")`, не литералы.

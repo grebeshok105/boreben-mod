@@ -3,12 +3,12 @@ name: debug-crash
 description: Use when user shares a crash report, stacktrace, or asks to debug a runtime crash of the addon.
 ---
 
-# Debug Crash — Boreben Addon
+# Debug Crash — Vanguard Addon
 
 ## 1. Найти источник
 ```bash
-ls -la /home/ubuntu/repos/boreben-mod/run/crash-reports/
-ls -la /home/ubuntu/repos/boreben-mod/run/logs/latest.log
+ls -la /home/ubuntu/repos/vanguard-mod/run/crash-reports/
+ls -la /home/ubuntu/repos/vanguard-mod/run/logs/latest.log
 ```
 
 Если краш в файле — `cat` или `read`. Если пользователь дал текст — работать с ним напрямую.
@@ -17,7 +17,7 @@ ls -la /home/ubuntu/repos/boreben-mod/run/logs/latest.log
 Искать в порядке:
 - `Caused by:` (в самом конце stacktrace) — настоящая причина
 - `Exception in thread` — точка падения
-- `at com.boreben.mod.*` — наш код в стеке
+- `at com.vanguard.mod.*` — наш код в стеке
 - `at com.example.superheroes.*` — код основного мода. **Если краш тут, а не у нас — это не баг аддона**, либо аддон зовёт internal API основного мода (нельзя), либо несовместимая версия
 
 ## 3. Классифицировать
@@ -34,7 +34,7 @@ ls -la /home/ubuntu/repos/boreben-mod/run/logs/latest.log
 
 - **`IllegalStateException: Adding duplicate key 'superheroes:superheroes'`** — пытался зарегистрировать creative-tab под id основного мода. Не делать так. Использовать `ItemGroupEvents.modifyEntriesEvent` (см. skill `addon-integration`)
 - **`java.lang.NoClassDefFoundError: com/example/superheroes/...`** — основной мод не загрузился (проверить что jar в `mods/` / classpath; проверить логи на ошибки загрузки superheroes)
-- **`Mod 'boreben' requires version * of 'superheroes' which is missing`** — игрок пытается запустить аддон без основного мода. Это правильное поведение, не лечить
+- **`Mod 'vanguard' requires version * of 'superheroes' which is missing`** — игрок пытается запустить аддон без основного мода. Это правильное поведение, не лечить
 - **`IllegalStateException: Receiving network packet on wrong side`** — забыли разделить client/server. Networking регистрировать без `@Environment`
 - **`NoSuchMethodError`** — Mojang mappings drift между версиями MC. См. `loader-gotchas`
 
