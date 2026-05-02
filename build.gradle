@@ -1,0 +1,115 @@
+plugins {
+	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
+	id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+repositories {
+	exclusiveContent {
+		forRepository {
+			maven {
+				name = 'GeckoLib'
+				url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+			}
+		}
+		filter {
+			includeGroup('software.bernie.geckolib')
+		}
+	}
+	maven {
+		name = 'Kosmx'
+		url = 'https://maven.kosmx.dev/'
+	}
+	mavenCentral()
+}
+
+loom {
+	splitEnvironmentSourceSets()
+
+	mods {
+		"vanguard" {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
+
+	runs {
+		datagen {
+			inherit server
+			name "Data Generation"
+			vmArg "-Dfabric-api.datagen"
+			vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
+			vmArg "-Dfabric-api.datagen.modid=vanguard"
+			runDir "build/datagen"
+		}
+	}
+}
+
+sourceSets {
+	main {
+		resources {
+			srcDirs += [
+				'src/main/generated'
+			]
+		}
+	}
+}
+
+dependencies {
+	// Minecraft + Fabric
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings loom.officialMojangMappings()
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+	// GeckoLib — 3D animated models (used by Reid sword)
+	modImplementation "software.bernie.geckolib:geckolib-fabric-1.21:${project.geckolib_version}"
+
+	// Player Animator (KosmX) — used for Reinhard custom player animations
+	modImplementation "dev.kosmx.player-anim:player-animation-lib-fabric:${project.player_animator_version}"
+
+	// Superheroes base mod — bundled into libs/ from the GitHub release.
+	// To update: drop a newer superheroes-X.Y.Z.jar into libs/ and bump
+	// `superheroes_version` in gradle.properties.
+	modImplementation files("libs/superheroes-${project.superheroes_version}.jar")
+}
+
+processResources {
+	inputs.property "version", project.version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": inputs.properties.version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 21
+}
+
+java {
+	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
+}
+
+jar {
+	inputs.property "projectName", project.name
+
+	from("LICENSE") {
+		rename { "${it}_${project.name}" }
+	}
+}
+
+publishing {
+	publications {
+		create("mavenJava", MavenPublication) {
+			from components.java
+		}
+	}
+	repositories {
+		// add publish repos here if/when needed
+	}
+}
