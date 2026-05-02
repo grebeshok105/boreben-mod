@@ -12,6 +12,7 @@ import com.vanguard.mod.ability.sword.SkyVaultJumpAbility;
 import com.vanguard.mod.ability.sword.SwordCooldowns;
 import com.vanguard.mod.ability.sword.SwordWaveAbility;
 import com.vanguard.mod.attachment.VanguardAttachments;
+import com.vanguard.mod.effect.GoldenAuraController;
 import com.vanguard.mod.effect.HeavensSwordStrikeManager;
 import com.vanguard.mod.effect.ReidSwordWorthyGate;
 import com.vanguard.mod.effect.ReinhardAbsoluteRegenController;
@@ -77,6 +78,7 @@ public final class VanguardMod implements ModInitializer {
 		SkyVaultLandingTracker.init();
 		HeavensSwordStrikeManager.init();
 		SwordWaveProjectiles.init();
+		GoldenAuraController.init();
 		VanguardNetworking.init();
 
 		ItemGroupEvents.modifyEntriesEvent(CreativeTabIds.SUPERHEROES_TAB)

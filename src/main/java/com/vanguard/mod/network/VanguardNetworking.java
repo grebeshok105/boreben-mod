@@ -5,9 +5,11 @@ import com.example.superheroes.api.HeroApi;
 import com.example.superheroes.ability.Ability;
 import com.vanguard.mod.attachment.ReinhardData;
 import com.vanguard.mod.attachment.VanguardAttachments;
+import com.vanguard.mod.effect.ReinhardPhaseController;
 import com.vanguard.mod.effect.ReinhardWishController;
 import com.vanguard.mod.effect.ReinhardWorthyOpponentTracker;
 import com.vanguard.mod.hero.ReinhardHero;
+import com.vanguard.mod.hero.ReinhardPhase;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -30,6 +32,7 @@ import java.util.UUID;
 public final class VanguardNetworking {
 	private static final int SYNC_INTERVAL_TICKS = 5;
 	private static final Map<UUID, WishSyncSnapshot> LAST_WISH_SNAPSHOT = new HashMap<>();
+	private static final Map<UUID, PhaseSyncSnapshot> LAST_PHASE_SNAPSHOT = new HashMap<>();
 
 	private VanguardNetworking() {
 	}
@@ -38,6 +41,7 @@ public final class VanguardNetworking {
 		PayloadTypeRegistry.playS2C().register(PhoenixResurrectS2CPayload.TYPE, PhoenixResurrectS2CPayload.STREAM_CODEC);
 		PayloadTypeRegistry.playS2C().register(WorthyMarksS2CPayload.TYPE, WorthyMarksS2CPayload.STREAM_CODEC);
 		PayloadTypeRegistry.playS2C().register(WishesStateS2CPayload.TYPE, WishesStateS2CPayload.STREAM_CODEC);
+		PayloadTypeRegistry.playS2C().register(ReinhardPhaseSyncS2CPayload.TYPE, ReinhardPhaseSyncS2CPayload.STREAM_CODEC);
 
 		PayloadTypeRegistry.playC2S().register(UseWishC2SPayload.TYPE, UseWishC2SPayload.STREAM_CODEC);
 		PayloadTypeRegistry.playC2S().register(SwordAbilityActivateC2SPayload.TYPE, SwordAbilityActivateC2SPayload.STREAM_CODEC);
@@ -62,13 +66,16 @@ public final class VanguardNetworking {
 			if (server.getTickCount() % SYNC_INTERVAL_TICKS != 0) return;
 			for (ServerPlayer player : server.getPlayerList().getPlayers()) {
 				if (!isReinhard(player)) {
-					if (LAST_WISH_SNAPSHOT.remove(player.getUUID()) != null) {
+					boolean hadWish = LAST_WISH_SNAPSHOT.remove(player.getUUID()) != null;
+					boolean hadPhase = LAST_PHASE_SNAPSHOT.remove(player.getUUID()) != null;
+					if (hadWish || hadPhase) {
 						sendEmptyState(player);
 					}
 					continue;
 				}
 				syncWorthyMarks(player);
 				syncWishesState(player);
+				syncPhaseState(player);
 			}
 		});
 	}
@@ -92,9 +99,20 @@ public final class VanguardNetworking {
 				snap.recent, new ArrayList<>(snap.adapted), snap.wishesUsed));
 	}
 
+	private static void syncPhaseState(ServerPlayer player) {
+		ReinhardPhase phase = ReinhardPhaseController.getCurrentPhase(player);
+		ReinhardData data = player.getAttachedOrCreate(VanguardAttachments.REINHARD_DATA);
+		PhaseSyncSnapshot snap = new PhaseSyncSnapshot(phase.index(), data.damageTaken());
+		PhaseSyncSnapshot prev = LAST_PHASE_SNAPSHOT.get(player.getUUID());
+		if (snap.equals(prev)) return;
+		LAST_PHASE_SNAPSHOT.put(player.getUUID(), snap);
+		ServerPlayNetworking.send(player, new ReinhardPhaseSyncS2CPayload(snap.phaseIndex, snap.damageTaken));
+	}
+
 	private static void sendEmptyState(ServerPlayer player) {
 		ServerPlayNetworking.send(player, new WishesStateS2CPayload(List.of(), List.of(), 0));
 		ServerPlayNetworking.send(player, new WorthyMarksS2CPayload(List.of()));
+		ServerPlayNetworking.send(player, new ReinhardPhaseSyncS2CPayload(0, 0f));
 	}
 
 	private static boolean isReinhard(ServerPlayer player) {
@@ -104,5 +122,8 @@ public final class VanguardNetworking {
 	}
 
 	private record WishSyncSnapshot(List<ResourceLocation> recent, Set<ResourceLocation> adapted, int wishesUsed) {
+	}
+
+	private record PhaseSyncSnapshot(int phaseIndex, float damageTaken) {
 	}
 }
