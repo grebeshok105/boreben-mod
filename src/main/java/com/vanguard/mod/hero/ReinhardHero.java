@@ -4,6 +4,7 @@ import com.example.superheroes.hero.Hero;
 import com.example.superheroes.hero.HeroTheme;
 import com.example.superheroes.resource.ResourceKind;
 import com.vanguard.mod.VanguardMod;
+import com.vanguard.mod.ability.sword.SwordAbilityIds;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -47,8 +48,17 @@ public final class ReinhardHero implements Hero {
 
 	@Override
 	public List<ResourceLocation> getAbilities() {
-		// Stage 4b: passives only. Active abilities land in 4c-4e.
-		return List.of();
+		// Sword-bound abilities (stage 4d). Activated either through the base
+		// mod's R-radial menu (gated by hand-holding the Reid sword) or via the
+		// dedicated Z/C/G keybinds. Worthy-gate is enforced inside each ability.
+		return List.of(
+				SwordAbilityIds.REID_DRAW,
+				SwordAbilityIds.AIR_SLASH,
+				SwordAbilityIds.SKY_VAULT,
+				SwordAbilityIds.HEAVENS_SWORD_STRIKE,
+				SwordAbilityIds.SWORD_WAVE,
+				SwordAbilityIds.COUNTER_RIPOSTE
+		);
 	}
 
 	@Override

@@ -1,0 +1,67 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.dragon_sword_reid.idle": {
+			"loop": true,
+			"animation_length": 4.0,
+			"bones": {
+				"gem": {
+					"scale": {
+						"0.0": [1, 1, 1],
+						"2.0": [1.15, 1.15, 1.15],
+						"4.0": [1, 1, 1]
+					}
+				},
+				"root": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"2.0": [0, 6, 0],
+						"4.0": [0, 0, 0]
+					}
+				}
+			}
+		},
+		"animation.dragon_sword_reid.draw": {
+			"loop": true,
+			"animation_length": 1.5,
+			"bones": {
+				"blade": {
+					"scale": {
+						"0.0": [1, 1, 1],
+						"0.75": [1.1, 1.05, 1.1],
+						"1.5": [1, 1, 1]
+					}
+				},
+				"gem": {
+					"scale": {
+						"0.0": [1.15, 1.15, 1.15],
+						"0.75": [1.45, 1.45, 1.45],
+						"1.5": [1.15, 1.15, 1.15]
+					}
+				},
+				"root": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.5": [0, 18, 0],
+						"1.0": [0, -18, 0],
+						"1.5": [0, 0, 0]
+					}
+				}
+			}
+		},
+		"animation.dragon_sword_reid.swing": {
+			"loop": false,
+			"animation_length": 0.6,
+			"bones": {
+				"root": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.15": [-30, -10, -25],
+						"0.45": [55, 25, 30],
+						"0.6": [0, 0, 0]
+					}
+				}
+			}
+		}
+	}
+}
