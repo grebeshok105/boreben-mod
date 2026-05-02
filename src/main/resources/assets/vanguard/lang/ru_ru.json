@@ -14,10 +14,22 @@
 	"key.vanguard.reid_draw": "Рейд: Обнажить клинок",
 	"key.vanguard.air_slash": "Рейд: Рассечение воздуха",
 	"key.vanguard.sky_vault": "Рейд: Прыжок в небо",
+	"key.vanguard.heavens_sword": "Рейд: Удар Небесного Меча",
+	"key.vanguard.sword_wave": "Рейд: Волна клинка",
 
 	"ability.vanguard.reid_draw": "Обнажение Рейда",
 	"ability.vanguard.air_slash": "Рассечение воздуха",
 	"ability.vanguard.sky_vault_jump": "Прыжок в небо",
+	"ability.vanguard.heavens_sword_strike": "Удар Небесного Меча",
+	"ability.vanguard.sword_wave": "Волна клинка",
+	"ability.vanguard.counter_riposte": "Авто-контратака",
+
+	"death.attack.vanguard.reid_melee": "%1$s сражён Мечом Дракона %2$s",
+	"death.attack.vanguard.air_slash": "%1$s рассечён ударом воздуха %2$s",
+	"death.attack.vanguard.heavens_sword_strike": "%1$s раздавлен Небесным Мечом %2$s",
+	"death.attack.vanguard.sword_wave": "%1$s рассечён волной клинка %2$s",
+	"death.attack.vanguard.counter_riposte": "%1$s наказан рефлексами %2$s",
+	"death.attack.vanguard.sky_vault_shockwave": "%1$s раздавлен ударной волной %2$s",
 
 	"vanguard.wish.hub": "ЖЕЛАНИЯ",
 	"vanguard.wish.adapted": "§9адаптировано",

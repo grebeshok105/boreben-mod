@@ -2,6 +2,8 @@ package com.vanguard.mod.ability.sword;
 
 import com.example.superheroes.ability.Ability;
 import com.example.superheroes.api.AbilityApi;
+import com.vanguard.mod.damage.VanguardDamageSources;
+import com.vanguard.mod.damage.VanguardDamageTypes;
 import com.vanguard.mod.effect.ReinhardWorthyOpponentTracker;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
@@ -96,7 +98,7 @@ public final class AirSlashAbility implements Ability {
 
 		if (victim instanceof LivingEntity living) {
 			float damage = BASE_DAMAGE + (ReidDrawState.isDrawn(player) ? DRAW_BONUS : 0f);
-			living.hurt(level.damageSources().playerAttack(player), damage);
+			living.hurt(VanguardDamageSources.source(level, VanguardDamageTypes.AIR_SLASH, player), damage);
 			level.sendParticles(ParticleTypes.SOUL_FIRE_FLAME,
 					living.getX(), living.getY() + living.getBbHeight() * 0.5,
 					living.getZ(), 24, 0.3, 0.3, 0.3, 0.04);

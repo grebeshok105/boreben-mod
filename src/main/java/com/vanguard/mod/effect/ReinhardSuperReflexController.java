@@ -3,6 +3,8 @@ package com.vanguard.mod.effect;
 import com.example.superheroes.api.HeroApi;
 import com.vanguard.mod.attachment.ReinhardData;
 import com.vanguard.mod.attachment.VanguardAttachments;
+import com.vanguard.mod.damage.VanguardDamageSources;
+import com.vanguard.mod.damage.VanguardDamageTypes;
 import com.vanguard.mod.hero.ReinhardHero;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
@@ -84,8 +86,8 @@ public final class ReinhardSuperReflexController {
 			if (entity instanceof LivingEntity target) {
 				float bonus = (float) sp.getAttributeValue(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE)
 						* (COUNTER_MULTIPLIER - 1f);
-				target.hurt(sp.damageSources().playerAttack(sp), bonus);
 				ServerLevel level = sp.serverLevel();
+				target.hurt(VanguardDamageSources.source(level, VanguardDamageTypes.COUNTER_RIPOSTE, sp), bonus);
 				level.sendParticles(ParticleTypes.CRIT,
 						target.getX(), target.getY() + target.getBbHeight() * 0.5,
 						target.getZ(), 20, 0.4, 0.4, 0.4, 0.2);

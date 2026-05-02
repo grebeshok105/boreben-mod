@@ -14,10 +14,22 @@
 	"key.vanguard.reid_draw": "Reid: Draw",
 	"key.vanguard.air_slash": "Reid: Air Slash",
 	"key.vanguard.sky_vault": "Reid: Sky Vault Jump",
+	"key.vanguard.heavens_sword": "Reid: Heaven's Sword Strike",
+	"key.vanguard.sword_wave": "Reid: Sword Wave",
 
 	"ability.vanguard.reid_draw": "Reid Draw",
 	"ability.vanguard.air_slash": "Air Slash",
 	"ability.vanguard.sky_vault_jump": "Sky Vault Jump",
+	"ability.vanguard.heavens_sword_strike": "Heaven's Sword Strike",
+	"ability.vanguard.sword_wave": "Sword Wave",
+	"ability.vanguard.counter_riposte": "Counter-Auto Riposte",
+
+	"death.attack.vanguard.reid_melee": "%1$s was cut down by %2$s's Dragon Sword",
+	"death.attack.vanguard.air_slash": "%1$s was rent by %2$s's Air Slash",
+	"death.attack.vanguard.heavens_sword_strike": "%1$s was crushed by %2$s's Heaven's Sword",
+	"death.attack.vanguard.sword_wave": "%1$s was bisected by %2$s's Sword Wave",
+	"death.attack.vanguard.counter_riposte": "%1$s was punished by %2$s's reflexes",
+	"death.attack.vanguard.sky_vault_shockwave": "%1$s was shattered by %2$s's Sky Vault impact",
 
 	"vanguard.wish.hub": "WISHES",
 	"vanguard.wish.adapted": "§9adapted",
